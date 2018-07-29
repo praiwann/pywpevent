@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='pywpevent',
     packages=['pywpevent'],
-    version='0.1',
+    version='0.1.0',
     description='Simple event management like wordpress',
     author='Praiwan N.',
     author_email='npraiwan@outlook.com',
