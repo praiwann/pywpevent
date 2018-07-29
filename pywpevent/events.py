@@ -97,6 +97,21 @@ class EventCtrl:
 
         return result
 
+    def list_event(self):
+        sorted_actions = sorted(self.__action_events.items(), key=lambda kv: kv[1]['priority'])
+        sorted_filters = sorted(self.__filter_events.items(), key=lambda kv: kv[1]['priority'])
+        actions = [{'name': k.split('_')[0], 'priority': v['priority']} for k, v in sorted_actions]
+        filters = [{'name': k.split('_')[0], 'priority': v['priority']} for k, v in sorted_filters]
+
+        print('Action -----')
+        [print('Action no.{}, Name: {}, Priority: {}'.format(i, v['name'], v['priority'])) for i, v in
+         enumerate(actions)]
+        print('------------')
+        print('Filter -----')
+        [print('Filter no.{}, Name: {}, Priority: {}'.format(i, v['name'], v['priority'])) for i, v in
+         enumerate(filters)]
+        print('------------')
+
     # print(__file__)
     # print(sys.argv[0])
     # print(inspect.stack()[0][1])

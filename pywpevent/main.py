@@ -24,3 +24,8 @@ def do_action(name, *args):
 def apply_filter(name, *args):
     ctrl = EventCtrl()
     return ctrl.apply_filter(name, *args)
+
+
+def list_event():
+    ctrl = EventCtrl()
+    ctrl.list_event()
