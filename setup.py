@@ -7,8 +7,11 @@ setup(
     description='Simple event management like wordpress',
     author='Praiwan N.',
     author_email='npraiwan@outlook.com',
-    url='https://github.com/author/package_name',
-    download_url='https://github.com/author/repo/tarball/1.0',
-    keywords=['tag1', 'tag2'],
-    classifiers=[],
+    url='https://github.com/praiwann/pywpevent',
+    keywords=['wordpress', 'event', 'action', 'filter'],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'License :: OSI Approved :: Apache Software License',
+        'Programming Language :: Python :: 3'
+    ],
 )
