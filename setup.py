@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='pywpevent',
     packages=['pywpevent'],
-    version='0.1.3',
+    version='0.1.5',
     description='Simple event management like wordpress',
     author='Praiwan N.',
     author_email='npraiwan@outlook.com',
