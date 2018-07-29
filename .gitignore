@@ -3,3 +3,6 @@
 __pycache__
 venv
 pywpevent/tests
+build
+dist
+pywpevent.egg*
