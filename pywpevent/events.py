@@ -74,7 +74,7 @@ class EventCtrl:
         self.validate()
         sorted_actions = sorted(self.__action_events.items(), key=lambda kv: kv[1]['priority'])
         for k, v in sorted_actions:
-            if k.split('_')[0] == name:
+            if k.rsplit('_', 1)[0] == name:
                 func = v.get('func', None)
                 if callable(func):
                     try:
@@ -88,7 +88,7 @@ class EventCtrl:
         result = None
         is_first = True
         for k, v in sorted_filters:
-            if k.split('_')[0] == name:
+            if k.rsplit('_', 1)[0] == name:
                 func = v.get('func', None)
                 if callable(func):
                     try:
