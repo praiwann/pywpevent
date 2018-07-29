@@ -23,17 +23,16 @@ class EventCtrl:
         self.__filter_events = {}
         self.__caller_path = os.path.dirname(os.path.realpath(sys.argv[0]))
         self.__config = configparser.RawConfigParser(allow_no_value=True)
-        self.__plugin_dir = DEFAULT_PLUGIN_DIR
+        self.__plugin_dir = {'default': DEFAULT_PLUGIN_DIR}
 
         config_path = self.__caller_path + '/' + CONFIG_FILE
         if os.path.exists(config_path):
             self.__config.read(config_path)
 
         for section in self.__config.sections():
-            if section == 'plugin_dir_path':
+            if section == 'plugin_dir_name':
                 for option in self.__config.options(section):
-                    if option == 'path':
-                        self.__plugin_dir = self.__config.get(section, option)
+                    self.__plugin_dir[option] = self.__config.get(section, option)
 
             # if section != 'plugins':
             #     continue
@@ -51,10 +50,11 @@ class EventCtrl:
 
     def initialize_plugin(self):
         if not self.__is_import:
-            try:
-                importlib.import_module(self.__plugin_dir)
-            except ModuleNotFoundError as me:
-                print(me)
+            for k, v in self.__plugin_dir.items():
+                try:
+                    importlib.import_module(v)
+                except ModuleNotFoundError as me:
+                    print(me)
 
             self.__is_import = True
 
