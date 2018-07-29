@@ -45,6 +45,10 @@ class EventCtrl:
             #     except ValueError:
             #         print('Config of {} is not support (should be in boolean)'.format(option))
 
+    def validate(self):
+        if not self.__is_import:
+            raise RuntimeError('Event not initialize.')
+
     def initialize_plugin(self):
         if not self.__is_import:
             try:
@@ -67,6 +71,7 @@ class EventCtrl:
             self.__filter_events[hash_name] = {'func': func, 'priority': priority}
 
     def do_action(self, name, *args):
+        self.validate()
         sorted_actions = sorted(self.__action_events.items(), key=lambda kv: kv[1]['priority'])
         for k, v in sorted_actions:
             if k.split('_')[0] == name:
@@ -78,6 +83,7 @@ class EventCtrl:
                         print(ex)
 
     def apply_filter(self, name, *args):
+        self.validate()
         sorted_filters = sorted(self.__filter_events.items(), key=lambda kv: kv[1]['priority'])
         result = None
         is_first = True
@@ -98,6 +104,7 @@ class EventCtrl:
         return result
 
     def list_event(self):
+        self.validate()
         sorted_actions = sorted(self.__action_events.items(), key=lambda kv: kv[1]['priority'])
         sorted_filters = sorted(self.__filter_events.items(), key=lambda kv: kv[1]['priority'])
         actions = [{'name': k.split('_')[0], 'priority': v['priority']} for k, v in sorted_actions]
