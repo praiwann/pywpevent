@@ -1,4 +1,4 @@
-from ctrl.events import EventCtrl
+from pywpevent.events import EventCtrl
 
 
 def initialize():

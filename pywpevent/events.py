@@ -4,7 +4,7 @@ import inspect
 import configparser
 import importlib
 import hashlib
-from ctrl.singleton import singleton
+from pywpevent.singleton import singleton
 
 CONFIG_FILE = 'pywpevent.cfg'
 DEFAULT_PLUGIN_DIR = 'pywpevent_plugins'
