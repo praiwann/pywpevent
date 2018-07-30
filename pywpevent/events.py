@@ -82,22 +82,16 @@ class EventCtrl:
                     except Exception as ex:
                         print(ex)
 
-    def apply_filter(self, name, *args):
+    def apply_filter(self, name, value, *args):
         self.validate()
         sorted_filters = sorted(self.__filter_events.items(), key=lambda kv: kv[1]['priority'])
-        result = None
-        is_first = True
+        result = value
         for k, v in sorted_filters:
             if k.rsplit('_', 1)[0] == name:
                 func = v.get('func', None)
                 if callable(func):
                     try:
-                        if not is_first:
-                            args = list(args)
-                            args[0] = result
-
-                        result = func(*args)
-                        is_first = False
+                        result = func(result, *args)
                     except Exception as ex:
                         print(ex)
 
