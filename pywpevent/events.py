@@ -25,7 +25,12 @@ class EventCtrl:
         self.__config = configparser.RawConfigParser(allow_no_value=True)
         self.__plugin_dir = {'default': DEFAULT_PLUGIN_DIR}
 
-        config_path = self.__caller_path + '/' + CONFIG_FILE
+        caller_path_from_proj_dir = sys.argv[0]
+        self.__project_path = '/'.join(
+            [x for x in self.__caller_path.split('/') if not x in caller_path_from_proj_dir.split('/')])
+
+        print(self.__project_path)
+        config_path = self.__project_path + '/' + CONFIG_FILE
         if os.path.exists(config_path):
             self.__config.read(config_path)
 
