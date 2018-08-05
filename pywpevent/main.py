@@ -16,14 +16,14 @@ def add_filter(name, func, priority=0):
     ctrl.add_filter(name, func, priority)
 
 
-def do_action(name, *args):
+def do_action(name, *args, **kwargs):
     ctrl = EventCtrl()
-    ctrl.do_action(name, *args)
+    ctrl.do_action(name, *args, **kwargs)
 
 
-def apply_filter(name, value, *args):
+def apply_filter(name, value, *args, **kwargs):
     ctrl = EventCtrl()
-    return ctrl.apply_filter(name, value, *args)
+    return ctrl.apply_filter(name, value, *args, **kwargs)
 
 
 def list_event():

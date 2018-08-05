@@ -70,7 +70,7 @@ class EventCtrl:
             hash_name = name + '_' + func_hash
             self.__filter_events[hash_name] = {'func': func, 'priority': priority}
 
-    def do_action(self, name, *args):
+    def do_action(self, name, *args, **kwargs):
         self.validate()
         sorted_actions = sorted(self.__action_events.items(), key=lambda kv: kv[1]['priority'])
         for k, v in sorted_actions:
@@ -78,11 +78,11 @@ class EventCtrl:
                 func = v.get('func', None)
                 if callable(func):
                     try:
-                        func(*args)
+                        func(*args, **kwargs)
                     except Exception as ex:
                         print(ex)
 
-    def apply_filter(self, name, value, *args):
+    def apply_filter(self, name, value, *args, **kwargs):
         self.validate()
         sorted_filters = sorted(self.__filter_events.items(), key=lambda kv: kv[1]['priority'])
         result = value
@@ -91,7 +91,7 @@ class EventCtrl:
                 func = v.get('func', None)
                 if callable(func):
                     try:
-                        result = func(result, *args)
+                        result = func(result, *args, **kwargs)
                     except Exception as ex:
                         print(ex)
 
